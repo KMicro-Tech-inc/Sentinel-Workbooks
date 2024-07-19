@@ -1,0 +1,1716 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 11,
+      "content": {
+        "version": "LinkItem/1.0",
+        "style": "tabs",
+        "links": [
+          {
+            "id": "c8625cba-0a68-46ee-8a82-9dbe2056946a",
+            "cellValue": "SelectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Billable Usage",
+            "subTarget": "BillableUsage",
+            "style": "link"
+          },
+          {
+            "id": "3c85abce-4957-4e6c-83f9-531f7ce3603c",
+            "cellValue": "SelectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Top 10 Data Tables",
+            "subTarget": "Top10Tables",
+            "style": "link"
+          },
+          {
+            "id": "63959a5e-2abc-441e-a3d3-06b55a1b9e67",
+            "cellValue": "SelectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Windows Security Events",
+            "subTarget": "SecurityEvents",
+            "style": "link"
+          },
+          {
+            "id": "3fcbc471-9071-4357-88e8-cecdabae9315",
+            "cellValue": "SelectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Common Security Logs",
+            "subTarget": "CommonSecurityLogs",
+            "style": "link"
+          },
+          {
+            "id": "4d467c96-3ecb-4c42-81c2-59f65c198c94",
+            "cellValue": "SelectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "MDE Table & Workstation Duplication",
+            "subTarget": "MDE",
+            "style": "link"
+          },
+          {
+            "id": "17aeac85-7ff7-4a2e-835f-6400f8b24d8c",
+            "cellValue": "SelectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Detection & Investigation Values",
+            "subTarget": "Detections",
+            "style": "link"
+          }
+        ]
+      },
+      "name": "links - 13"
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "parameters": [
+          {
+            "id": "070dee6a-56dd-42b7-95fa-e6e26e651894",
+            "version": "KqlParameterItem/1.0",
+            "name": "SubId",
+            "type": 1,
+            "isRequired": true,
+            "query": "resources| where type =~ 'microsoft.operationalinsights/workspaces'| distinct subscriptionId",
+            "queryType": 1,
+            "resourceType": "microsoft.resourcegraph/resources"
+          },
+          {
+            "id": "91836663-3ff4-4591-9d50-037667c2e61a",
+            "version": "KqlParameterItem/1.0",
+            "name": "TimeRange",
+            "type": 4,
+            "isRequired": true,
+            "value": {
+              "durationMs": 7776000000
+            },
+            "typeSettings": {
+              "selectableValues": [
+                {
+                  "durationMs": 300000
+                },
+                {
+                  "durationMs": 900000
+                },
+                {
+                  "durationMs": 1800000
+                },
+                {
+                  "durationMs": 3600000
+                },
+                {
+                  "durationMs": 86400000
+                },
+                {
+                  "durationMs": 259200000
+                },
+                {
+                  "durationMs": 604800000
+                },
+                {
+                  "durationMs": 2592000000
+                },
+                {
+                  "durationMs": 5184000000
+                },
+                {
+                  "durationMs": 7776000000
+                }
+              ],
+              "allowCustom": true
+            },
+            "timeContext": {
+              "durationMs": 86400000
+            }
+          },
+          {
+            "id": "6c9a571b-87e1-440e-89ee-a8e1fdc874c7",
+            "version": "KqlParameterItem/1.0",
+            "name": "CostPerGB",
+            "type": 1,
+            "description": "Effective Cost Per GB - https://azure.microsoft.com/en-ca/pricing/details/microsoft-sentinel/",
+            "isRequired": true,
+            "query": "print Cost = '0'",
+            "queryType": 0,
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": "4.3"
+          }
+        ],
+        "style": "pills",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "parameters - 2"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### Columns explained- **TimeRange**: Set time range to query against.- **SubId**: This is pulled directly from Azure Resource Graph- **CostPerGB**: Effective Cost per GB. Consult https://azure.microsoft.com/en-ca/pricing/details/microsoft-sentinel/?cdn=disable and select the appropriate rate based on current commitment tiers Input a cost value to update the below data dynamically."
+      },
+      "conditionalVisibility": {
+        "parameterName": "Help",
+        "comparison": "isEqualTo",
+        "value": "Yes"
+      },
+      "name": "text - 6"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### Cost Optimization Report Instructions for Quarterly Business Reviews (QBR):1. Go to **Billable Usage** tab and grab the following screenshots:t- **Daily Average Ingest**t- **Long** and **short term** ingest trends:ttt- Set TimeRange to **30** and **90** days2. Go to **Top 10 Data Tables** tab and click on the go to analtics workspace, then Export to CSV. Name and save the CSV file as an Excel document (.xlsx).3. Repeat the previous step (#2) for **Windows Security Events**4. Do the same for **Common Security Logs** tab, but grab screenshots of the rendered graphs instead of exporting to an excel doc.5. Export the results of the **MDE Table & Workstation Duplication** tab in a similar manner.6. Plug top 10 EventIDs into search bar in **Detection & Investigation Values** and note the _Detection_ and _Investigation_ values for each EventID.7. Expand the excel table containing results from the **Windows Security Events** tab we exported in step #3 by 2 columns and insert the _Detection_ and _Investigation_ values into these 2 columns.8. Export CSVs from **MDE Table & Workstation Duplication** and save as .xlsx "
+      },
+      "conditionalVisibility": {
+        "parameterName": "QBR",
+        "comparison": "isEqualTo",
+        "value": "Yes"
+      },
+      "name": "text - 17"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 1,
+            "content": {
+              "json": "### Current Status"
+            },
+            "name": "text - 8"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "resourcecontainers| where type == 'microsoft.resources/subscriptions'| where subscriptionId =~ '{SubId}'| take 1| project name| extend Title = 'Subscription'",
+              "size": 4,
+              "showAnalytics": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "visualization": "tiles",
+              "tileSettings": {
+                "titleContent": {
+                  "columnMatch": "Title",
+                  "formatter": 18,
+                  "formatOptions": {
+                    "thresholdsOptions": "colors",
+                    "thresholdsGrid": [
+                      {
+                        "operator": "Default",
+                        "thresholdValue": null,
+                        "representation": "lightBlue",
+                        "text": "{0}{1}"
+                      }
+                    ]
+                  }
+                },
+                "leftContent": {
+                  "columnMatch": "name",
+                  "formatter": 1,
+                  "formatOptions": {
+                    "compositeBarSettings": {
+                      "labelText": "",
+                      "columnSettings": [
+                        {
+                          "columnName": "name",
+                          "color": "blue"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "showBorder": true,
+                "size": "auto"
+              }
+            },
+            "customWidth": "10",
+            "name": "query - 0 - Copy"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "resources\r\n| where type =~ 'microsoft.operationalinsights/workspaces'\r\n| where subscriptionId =~ '{SubId}'\r\n| project Retention=properties.retentionInDays, Capacity=properties.sku.capacityReservationLevel, location, resourceGroup, tenantId, name, id\r\n| extend Retention = toint(Retention)\r\n| order by Retention desc\r\n| take 1\r\n| project location\r\n| extend Title = 'Region'",
+              "size": 4,
+              "showAnalytics": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "visualization": "tiles",
+              "tileSettings": {
+                "titleContent": {
+                  "columnMatch": "Title",
+                  "formatter": 18,
+                  "formatOptions": {
+                    "thresholdsOptions": "colors",
+                    "thresholdsGrid": [
+                      {
+                        "operator": "Default",
+                        "thresholdValue": null,
+                        "representation": "lightBlue",
+                        "text": "{0}{1}"
+                      }
+                    ]
+                  }
+                },
+                "leftContent": {
+                  "columnMatch": "location",
+                  "formatter": 1,
+                  "formatOptions": {
+                    "compositeBarSettings": {
+                      "labelText": "",
+                      "columnSettings": [
+                        {
+                          "columnName": "name",
+                          "color": "blue"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "showBorder": true,
+                "size": "auto"
+              }
+            },
+            "customWidth": "10",
+            "name": "query - 0 - Copy - Copy"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "resources| where type =~ 'microsoft.operationalinsights/workspaces'| where subscriptionId =~ '{SubId}'| project Retention=properties.retentionInDays, Capacity=properties.sku.capacityReservationLevel, location, resourceGroup, tenantId, name, id| extend Retention = toint(Retention)| order by Retention desc| take 1| project name| extend Title = 'Workspace'",
+              "size": 4,
+              "showAnalytics": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "visualization": "tiles",
+              "tileSettings": {
+                "titleContent": {
+                  "columnMatch": "Title",
+                  "formatter": 18,
+                  "formatOptions": {
+                    "thresholdsOptions": "colors",
+                    "thresholdsGrid": [
+                      {
+                        "operator": "Default",
+                        "thresholdValue": null,
+                        "representation": "lightBlue",
+                        "text": "{0}{1}"
+                      }
+                    ]
+                  }
+                },
+                "leftContent": {
+                  "columnMatch": "name",
+                  "formatter": 1,
+                  "formatOptions": {
+                    "compositeBarSettings": {
+                      "labelText": "",
+                      "columnSettings": [
+                        {
+                          "columnName": "name",
+                          "color": "blue"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "showBorder": true,
+                "size": "auto"
+              }
+            },
+            "customWidth": "10",
+            "name": "query - 0 - Copy - Copy - Copy"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "resources| where type =~ 'microsoft.operationalinsights/workspaces'| where subscriptionId =~ '{SubId}'| project Retention=properties.retentionInDays, Capacity=properties.sku.capacityReservationLevel, location, resourceGroup, tenantId, name, id| extend Retention = toint(Retention)| order by Retention desc| take 1| project Capacity = iff(isnotempty(Capacity), strcat(Capacity, ' GB/Day'), 'Pay-as-you-go')| extend Title = 'Commitment Tier'",
+              "size": 4,
+              "showAnalytics": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "visualization": "tiles",
+              "tileSettings": {
+                "titleContent": {
+                  "columnMatch": "Title",
+                  "formatter": 18,
+                  "formatOptions": {
+                    "thresholdsOptions": "colors",
+                    "thresholdsGrid": [
+                      {
+                        "operator": "Default",
+                        "thresholdValue": null,
+                        "representation": "lightBlue",
+                        "text": "{0}{1}"
+                      }
+                    ]
+                  }
+                },
+                "leftContent": {
+                  "columnMatch": "Capacity",
+                  "formatter": 1,
+                  "formatOptions": {
+                    "compositeBarSettings": {
+                      "labelText": "",
+                      "columnSettings": [
+                        {
+                          "columnName": "name",
+                          "color": "blue"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "showBorder": true,
+                "size": "auto"
+              }
+            },
+            "customWidth": "10",
+            "name": "query - 0 - Copy - Copy - Copy - Copy"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "Usage                                                                  //<-- Query the USAGE table (instead of \"search *\" to query everything)\r\n| where IsBillable == true                                             //<-- Only include billable ingest volume\r\n| summarize GB= sum(Quantity)/1000 by bin(TimeGenerated,1d)            //<-- break it up into GB/Day\r\n| summarize AvgGBPerDay=avg(GB)                                        //<-- take the Average\r\n| extend Cost=AvgGBPerDay * {CostPerGB}                                //<-- calculate average cost\r\n| project AvgGBPerDay=strcat(round(AvgGBPerDay,2), ' GB/Day')\r\n// AvgCostPerDay=strcat('$', round(Cost,2), ' /Day')    //<-- This line is tricky. I convert everything to string in order to prepend '$' and append ' /Day' to the results\r\n| extend Title = 'Avg. Daily Ingest'",
+              "size": 4,
+              "showAnalytics": true,
+              "timeContextFromParameter": "TimeRange",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "visualization": "tiles",
+              "tileSettings": {
+                "titleContent": {
+                  "columnMatch": "Title",
+                  "formatter": 18,
+                  "formatOptions": {
+                    "thresholdsOptions": "colors",
+                    "thresholdsGrid": [
+                      {
+                        "operator": "Default",
+                        "thresholdValue": null,
+                        "representation": "lightBlue",
+                        "text": "{0}{1}"
+                      }
+                    ]
+                  }
+                },
+                "leftContent": {
+                  "columnMatch": "AvgGBPerDay",
+                  "formatter": 1,
+                  "formatOptions": {
+                    "compositeBarSettings": {
+                      "labelText": "",
+                      "columnSettings": [
+                        {
+                          "columnName": "name",
+                          "color": "blue"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "showBorder": true,
+                "size": "auto"
+              }
+            },
+            "customWidth": "10",
+            "name": "query - 0 - Copy - Copy - Copy - Copy - Copy"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "Usage                                                                 //<-- Query the USAGE table (instead of \"search *\" to query everything)\r\n| where IsBillable == true                                            //<-- Only include billable ingest volume\r\n| summarize GB= sum(Quantity)/1000 by bin(TimeGenerated,1d)           //<-- break it up into GB/Day\r\n| summarize AvgGBPerDay=avg(GB)                                       //<-- take the Average\r\n| extend Cost=AvgGBPerDay * {CostPerGB}                                 //<-- calculate average cost\r\n| project AvgCostPerDay=strcat('$', round(Cost,2), ' /Day')           //<-- This line is tricky. I convert everything to string in order to prepend '$' and append ' /Day' to the results\r\n| extend Title = 'Avg. Daily Cost'",
+              "size": 4,
+              "showAnalytics": true,
+              "timeContextFromParameter": "TimeRange",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "visualization": "tiles",
+              "tileSettings": {
+                "titleContent": {
+                  "columnMatch": "Title",
+                  "formatter": 18,
+                  "formatOptions": {
+                    "thresholdsOptions": "colors",
+                    "thresholdsGrid": [
+                      {
+                        "operator": "Default",
+                        "thresholdValue": null,
+                        "representation": "lightBlue",
+                        "text": "{0}{1}"
+                      }
+                    ]
+                  }
+                },
+                "leftContent": {
+                  "columnMatch": "AvgCostPerDay",
+                  "formatter": 1,
+                  "formatOptions": {
+                    "compositeBarSettings": {
+                      "labelText": "",
+                      "columnSettings": [
+                        {
+                          "columnName": "name",
+                          "color": "blue"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "showBorder": true,
+                "size": "auto"
+              }
+            },
+            "customWidth": "10",
+            "name": "query - 0 - Copy - Copy - Copy - Copy - Copy - Copy"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "resources| where type =~ 'microsoft.operationalinsights/workspaces'| where subscriptionId =~ '{SubId}'| project Retention=properties.retentionInDays, Capacity=properties.sku.capacityReservationLevel, location, resourceGroup, tenantId, name, id| extend Retention = toint(Retention)| order by Retention desc| take 1| project Retention = strcat(Retention, ' Days Online')| extend Title = 'Data Retention'",
+              "size": 4,
+              "showAnalytics": true,
+              "queryType": 1,
+              "resourceType": "microsoft.resourcegraph/resources",
+              "visualization": "tiles",
+              "tileSettings": {
+                "titleContent": {
+                  "columnMatch": "Title",
+                  "formatter": 18,
+                  "formatOptions": {
+                    "thresholdsOptions": "colors",
+                    "thresholdsGrid": [
+                      {
+                        "operator": "Default",
+                        "thresholdValue": null,
+                        "representation": "lightBlue",
+                        "text": "{0}{1}"
+                      }
+                    ]
+                  }
+                },
+                "leftContent": {
+                  "columnMatch": "Retention",
+                  "formatter": 1,
+                  "formatOptions": {
+                    "compositeBarSettings": {
+                      "labelText": "",
+                      "columnSettings": [
+                        {
+                          "columnName": "name",
+                          "color": "blue"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "showBorder": true,
+                "size": "auto"
+              }
+            },
+            "customWidth": "10",
+            "name": "query - 0 - Copy - Copy - Copy - Copy - Copy - Copy"
+          }
+        ]
+      },
+      "name": "Overview"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "Usage\r\n| where IsBillable == true\r\n| where DataType !contains 'device'\r\n| summarize GB= round(sum(Quantity)/1000, 2) by DataType\r\n| extend Cost=round(GB*{CostPerGB}, 2)\r\n| extend dollar = Cost\r\n| sort by Cost desc\r\n| extend Cost=strcat('$', Cost)",
+              "size": 3,
+              "timeContextFromParameter": "TimeRange",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "visualization": "piechart"
+            },
+            "customWidth": "50",
+            "name": "query - 13"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "Usage\r\n| where IsBillable == true\r\n| summarize GB = round(sum(Quantity)/1000,2) by DataType\r\n| extend TotalCost = round(GB*{CostPerGB},2)\r\n| extend TotalCost = strcat('$', TotalCost)\r\n| sort by TotalCost desc\r\n| where DataType !contains 'device'\r\n| limit 10",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "Top 10 Sources of Billable Ingest:",
+              "timeContextFromParameter": "TimeRange",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "gridSettings": {
+                "sortBy": [
+                  {
+                    "itemKey": "TotalCost",
+                    "sortOrder": 2
+                  }
+                ]
+              },
+              "sortBy": [
+                {
+                  "itemKey": "TotalCost",
+                  "sortOrder": 2
+                }
+              ]
+            },
+            "customWidth": "50",
+            "conditionalVisibility": {
+              "parameterName": "SelectedTab",
+              "comparison": "isEqualTo",
+              "value": "Top10Tables"
+            },
+            "name": "query - 8"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "SelectedTab",
+        "comparison": "isEqualTo",
+        "value": "Top10Tables"
+      },
+      "customWidth": "50",
+      "name": "group - 14"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "CommonSecurityLog| summarize Size = sum(_BilledSize) by DeviceProduct, DeviceVendor| extend Cost = strcat('$', round((Size/ 1000 / 1000 / 1000 * {CostPerGB}), 2))| sort by Size desc| project Vendor=DeviceVendor, Product=DeviceProduct, ['Log Size (bytes)'] = Size, Cost| limit 10",
+        "size": 0,
+        "showAnalytics": true,
+        "title": "Cost per Product by Vendor",
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "conditionalVisibility": {
+        "parameterName": "SelectedTab",
+        "comparison": "isEqualTo",
+        "value": "CommonSecurityLogs"
+      },
+      "name": "query - 20",
+      "styleSettings": {
+        "showBorder": true
+      }
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "CommonSecurityLog| summarize count() by DeviceProduct, DeviceVendor| sort by count_ desc",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "Log Entries Per Product Under CommonSecurityLog",
+              "timeContextFromParameter": "TimeRange",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "visualization": "piechart"
+            },
+            "customWidth": "30",
+            "name": "query - 5"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "CommonSecurityLog//| summarize Total=count() by DeviceProduct, DeviceVendor| summarize Entries = count(), Size = sum(_BilledSize) by DeviceProduct, DeviceVendor| extend Cost = strcat('$', round((Size/ 1000 / 1000 / 1000 * {CostPerGB}), 2))| sort by Size desc| project Vendor=DeviceVendor, Product=DeviceProduct, ['Log Entries'] = Entries, ['Log Size'] = Size, ['Size per Entry'] = 1.0 * Size / Entries, Cost| take 10",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "Details of Log Entries and Costs",
+              "timeContextFromParameter": "TimeRange",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "visualization": "table"
+            },
+            "customWidth": "70",
+            "name": "query - 5 - Copy"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "let ExistingVendor = toscalar(    CommonSecurityLog    | where TimeGenerated >= ago(3d)    | where isnotempty(DeviceVendor)    | project DeviceVendor    //| extend Vendor=case(DeviceVendor == 'Palo Alto Networks', 'Palo Alto Firewall', DeviceVendor == 'Cisco', 'Cisco ASA', DeviceVendor)    | summarize make_set(DeviceVendor)    );SentinelDeployedAlerts_CL//| where TimeGenerated >= ago(7d)| where Query_s contains 'CommonSecurityLog'| where DisplayName_s contains 'MS-A' or DisplayName_s contains 'BV-'| parse DisplayName_s with RuleNumber ':' *| extend product = extract(@DeviceProduct.*?'([^']*)', 1, Query_s)| extend vendor = extract(@DeviceVendor.*?'([^']*)', 1, Query_s)| where vendor in~ (ExistingVendor)| summarize Total=dcount(RuleNumber) by vendor",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "Rules Under CommonSecurityLog",
+              "timeContextFromParameter": "TimeRange",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "visualization": "piechart"
+            },
+            "customWidth": "30",
+            "name": "query - 5 - Copy"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "let ExistingVendor = toscalar(    CommonSecurityLog    | where TimeGenerated >= ago(3d)    | where isnotempty(DeviceVendor)    | project DeviceVendor    //| extend Vendor=case(DeviceVendor == 'Palo Alto Networks', 'Palo Alto Firewall', DeviceVendor == 'Cisco', 'Cisco ASA', DeviceVendor)    | summarize make_set(DeviceVendor)    );SentinelDeployedAlerts_CL//| where TimeGenerated >= ago(7d)| where Query_s contains 'CommonSecurityLog'| where DisplayName_s contains 'MS-A' or DisplayName_s contains 'BV-'| parse DisplayName_s with RuleNumber ':' *| extend product = extract(@DeviceProduct.*?'([^']*)', 1, Query_s)| extend vendor = extract(@DeviceVendor.*?'([^']*)', 1, Query_s)| where vendor in~ (ExistingVendor)| summarize by    RuleName=DisplayName_s,    LogSource=vendor,    Enabled = IsEnabled_b,    MITRETactics = Tactics_s,    NumberofTactics = array_length(parse_json(Tactics_s)),    LastModified=LastModifiedOn_t,    RuleNumber",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "Rules Details Under CommonSecurityLog*",
+              "timeContextFromParameter": "TimeRange",
+              "exportedParameters": [
+                {
+                  "fieldName": "RuleNumber",
+                  "parameterName": "SelectedRuleNumber",
+                  "parameterType": 1
+                },
+                {
+                  "fieldName": "RuleName",
+                  "parameterName": "SelectedRuleName",
+                  "parameterType": 1
+                }
+              ],
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "visualization": "table",
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "RuleNumber",
+                    "formatter": 5
+                  }
+                ],
+                "filter": true,
+                "sortBy": [
+                  {
+                    "itemKey": "RuleName",
+                    "sortOrder": 1
+                  }
+                ]
+              },
+              "sortBy": [
+                {
+                  "itemKey": "RuleName",
+                  "sortOrder": 1
+                }
+              ]
+            },
+            "customWidth": "70",
+            "name": "query - 5 - Copy - Copy"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "SentinelDeployedAlerts_CL| where DisplayName_s contains '{SelectedRuleNumber}'//| where Query_s contains 'CommonSecurityLog'| summarize arg_max(TimeGenerated, *)| project         RuleName=DisplayName_s,    Severity = column_ifexists('properties_severity_s', ''),    Description = properties_description_s,    QueryFrequency = properties_queryFrequency_s,    QueryPeriod = properties_queryPeriod_s",
+              "size": 4,
+              "showAnalytics": true,
+              "title": "Selected Rule",
+              "timeContextFromParameter": "TimeRange",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "visualization": "table",
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "Severity",
+                    "formatter": 18,
+                    "formatOptions": {
+                      "thresholdsOptions": "colors",
+                      "thresholdsGrid": [
+                        {
+                          "operator": "contains",
+                          "thresholdValue": "High",
+                          "representation": "orange",
+                          "text": "{0}{1}"
+                        },
+                        {
+                          "operator": "contains",
+                          "thresholdValue": "Medium",
+                          "representation": "blue",
+                          "text": "{0}{1}"
+                        },
+                        {
+                          "operator": "contains",
+                          "thresholdValue": "Low",
+                          "representation": "gray",
+                          "text": "{0}{1}"
+                        },
+                        {
+                          "operator": "Default",
+                          "thresholdValue": null,
+                          "text": "{0}{1}"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnMatch": "Description",
+                    "formatter": 0,
+                    "formatOptions": {
+                      "customColumnWidthSetting": "75ch"
+                    }
+                  },
+                  {
+                    "columnMatch": "RuleNumber",
+                    "formatter": 5
+                  }
+                ],
+                "filter": true
+              }
+            },
+            "conditionalVisibility": {
+              "parameterName": "SelectedRuleNumber",
+              "comparison": "isNotEqualTo",
+              "value": " "
+            },
+            "name": "query - 5 - Copy - Copy - Copy"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "CommonSecurityLog| parse _ResourceId with * '/resourcegroups/' ResourceGroup '/' * '/virtualmachines/' VirtualMachines| summarize LastMessage = max(TimeGenerated), BillableData = sum(_BilledSize), MessageCount = count() by DeviceName, DeviceVendor, DeviceVersion, Computer, ResourceGroup, VirtualMachines| extend State = iff(LastMessage < ago(30m), 'Offline', 'Online')| extend TimeFromNow = now() - LastMessage| extend [TimeAgo] = strcat(case(TimeFromNow < 2m, strcat(toint(TimeFromNow / 1m), ' seconds'), TimeFromNow < 2h, strcat(toint(TimeFromNow / 1m), ' minutes'), TimeFromNow < 2d, strcat(toint(TimeFromNow / 1h), ' hours'), strcat(toint(TimeFromNow / 1d), ' days')), ' ago')| join (    CommonSecurityLog    | make-series InternalTrend=iff(count() > 0, 1, 0) default = 0 on TimeGenerated from {TimeRange:start} to {TimeRange:end} step {TimeRange:grain} by Computer    | extend Trend=array_slice(InternalTrend, array_length(InternalTrend) - 30, array_length(InternalTrend) - 1)    | extend (s_min, s_minId, s_max, s_maxId, s_avg, s_var, s_stdev) = series_stats(Trend)    | project Computer, Trend, s_avg    )    on Computer| order by State, s_avg asc, TimeAgo| project DeviceName, DeviceVendor, DeviceVersion, Computer, ResourceGroup, VirtualMachines, State, [Time]=strcat('uc0u55357 u56658  ', TimeAgo), [Message Trend]=Trend, BillableData, MessageCount| extend Cost = strcat('$', round(BillableData /1000/1000/1000 * {CostPerGB},2))| sort by BillableData desc",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "CommonSecurityLog Data*",
+              "timeContextFromParameter": "TimeRange",
+              "exportFieldName": "DeviceName",
+              "exportParameterName": "SelectedDevice",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "visualization": "table",
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "State",
+                    "formatter": 18,
+                    "formatOptions": {
+                      "thresholdsOptions": "icons",
+                      "thresholdsGrid": [
+                        {
+                          "operator": "==",
+                          "thresholdValue": "Online",
+                          "representation": "success",
+                          "text": "{0}{1}"
+                        },
+                        {
+                          "operator": "==",
+                          "thresholdValue": "Offline",
+                          "representation": "2",
+                          "text": "{0}{1}"
+                        },
+                        {
+                          "operator": "Default",
+                          "thresholdValue": null,
+                          "representation": "success",
+                          "text": "{0}{1}"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnMatch": "Message Trend",
+                    "formatter": 10,
+                    "formatOptions": {
+                      "palette": "green"
+                    }
+                  },
+                  {
+                    "columnMatch": "BillableData",
+                    "formatter": 3,
+                    "formatOptions": {
+                      "palette": "blue",
+                      "customColumnWidthSetting": "330px"
+                    },
+                    "numberFormat": {
+                      "unit": 2,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "MessageCount",
+                    "formatter": 3,
+                    "formatOptions": {
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 17,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "EstCost",
+                    "formatter": 8,
+                    "formatOptions": {
+                      "palette": "blue"
+                    }
+                  }
+                ],
+                "filter": true
+              }
+            },
+            "name": "query - 5 - Copy - Copy"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "CommonSecurityLog| where DeviceName == '{SelectedDevice}'| summarize count() by Computer, SourceIP| sort by count_ desc",
+              "size": 1,
+              "showAnalytics": true,
+              "title": "Top Source IPs",
+              "noDataMessage": "Select Any Value From Table Above To Display More Details",
+              "timeContextFromParameter": "TimeRange",
+              "exportedParameters": [
+                {
+                  "fieldName": "SourceIP",
+                  "parameterName": "SelectedIP",
+                  "parameterType": 1
+                },
+                {
+                  "fieldName": "Computer",
+                  "parameterName": "SelectedComputer",
+                  "parameterType": 1
+                }
+              ],
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "visualization": "table",
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "count_",
+                    "formatter": 8,
+                    "formatOptions": {
+                      "palette": "turquoise"
+                    }
+                  },
+                  {
+                    "columnMatch": "State",
+                    "formatter": 18,
+                    "formatOptions": {
+                      "thresholdsOptions": "icons",
+                      "thresholdsGrid": [
+                        {
+                          "operator": "==",
+                          "thresholdValue": "Online",
+                          "representation": "success",
+                          "text": "{0}{1}"
+                        },
+                        {
+                          "operator": "==",
+                          "thresholdValue": "Offline",
+                          "representation": "2",
+                          "text": "{0}{1}"
+                        },
+                        {
+                          "operator": "Default",
+                          "thresholdValue": null,
+                          "representation": "success",
+                          "text": "{0}{1}"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnMatch": "Message Trend",
+                    "formatter": 10,
+                    "formatOptions": {
+                      "palette": "green"
+                    }
+                  },
+                  {
+                    "columnMatch": "BillableData",
+                    "formatter": 3,
+                    "formatOptions": {
+                      "palette": "blue",
+                      "customColumnWidthSetting": "330px"
+                    },
+                    "numberFormat": {
+                      "unit": 2,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "MessageCount",
+                    "formatter": 3,
+                    "formatOptions": {
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 17,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "EstCost",
+                    "formatter": 8,
+                    "formatOptions": {
+                      "palette": "blue"
+                    }
+                  }
+                ]
+              }
+            },
+            "customWidth": "30",
+            "conditionalVisibility": {
+              "parameterName": "SelectedDevice",
+              "comparison": "isNotEqualTo",
+              "value": " "
+            },
+            "name": "query - 5.20"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "CommonSecurityLog| where SourceIP == '{SelectedIP}'| where Computer == '{SelectedComputer}'| summarize count() by Computer, DeviceAction, SourceIP, SourcePort, DestinationIP, DestinationPort, Protocol, Activity| sort by count_ desc",
+              "size": 1,
+              "showAnalytics": true,
+              "title": " ",
+              "noDataMessage": "Select Any Value From Table On The Left To Display More Data",
+              "timeContextFromParameter": "TimeRange",
+              "exportFieldName": "SourceIP",
+              "exportParameterName": "SelectedIP",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "visualization": "table",
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "count_",
+                    "formatter": 8,
+                    "formatOptions": {
+                      "palette": "turquoise"
+                    }
+                  },
+                  {
+                    "columnMatch": "State",
+                    "formatter": 18,
+                    "formatOptions": {
+                      "thresholdsOptions": "icons",
+                      "thresholdsGrid": [
+                        {
+                          "operator": "==",
+                          "thresholdValue": "Online",
+                          "representation": "success",
+                          "text": "{0}{1}"
+                        },
+                        {
+                          "operator": "==",
+                          "thresholdValue": "Offline",
+                          "representation": "2",
+                          "text": "{0}{1}"
+                        },
+                        {
+                          "operator": "Default",
+                          "thresholdValue": null,
+                          "representation": "success",
+                          "text": "{0}{1}"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnMatch": "Message Trend",
+                    "formatter": 10,
+                    "formatOptions": {
+                      "palette": "green"
+                    }
+                  },
+                  {
+                    "columnMatch": "BillableData",
+                    "formatter": 3,
+                    "formatOptions": {
+                      "palette": "blue",
+                      "customColumnWidthSetting": "330px"
+                    },
+                    "numberFormat": {
+                      "unit": 2,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "MessageCount",
+                    "formatter": 3,
+                    "formatOptions": {
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 17,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "EstCost",
+                    "formatter": 8,
+                    "formatOptions": {
+                      "palette": "blue"
+                    }
+                  }
+                ],
+                "filter": true
+              }
+            },
+            "customWidth": "70",
+            "conditionalVisibility": {
+              "parameterName": "SelectedIP",
+              "comparison": "isNotEqualTo",
+              "value": " "
+            },
+            "name": "query - 5.20 - Copy"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "***"
+            },
+            "name": "text - 13"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "Syslog| summarize LastMessage = max(TimeGenerated), BillableSyslogData = sum(_BilledSize), MessageCount = count() by HostName| extend State = iff(LastMessage < ago(30m), 'Offline', 'Online')| extend TimeFromNow = now() - LastMessage| extend [TimeAgo] = strcat(case(TimeFromNow < 2m, strcat(toint(TimeFromNow / 1m), ' seconds'), TimeFromNow < 2h, strcat(toint(TimeFromNow / 1m), ' minutes'), TimeFromNow < 2d, strcat(toint(TimeFromNow / 1h), ' hours'), strcat(toint(TimeFromNow / 1d), ' days')), ' ago')| join (    Syslog    | make-series InternalTrend=iff(count() > 0, 1, 0) default = 0 on TimeGenerated from ago(7d) to now() step 30m by HostName    | extend Trend=array_slice(InternalTrend, array_length(InternalTrend) - 30, array_length(InternalTrend) - 1)    | extend (s_min, s_minId, s_max, s_maxId, s_avg, s_var, s_stdev) = series_stats(Trend)    | project HostName, Trend, s_avg    )    on HostName| order by State, s_avg asc, TimeAgo| project HostName, State, [Time]=strcat('uc0u55357 u56658  ', TimeAgo), [Message Trend]=Trend, BillableSyslogData, MessageCount| extend Cost = strcat('$', round(BillableSyslogData /1000/1000/1000 * {CostPerGB},2))| sort by BillableSyslogData desc",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "Syslog Data*",
+              "timeContextFromParameter": "TimeRange",
+              "exportFieldName": "HostName",
+              "exportParameterName": "SelectedHost",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "visualization": "table",
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "State",
+                    "formatter": 18,
+                    "formatOptions": {
+                      "thresholdsOptions": "icons",
+                      "thresholdsGrid": [
+                        {
+                          "operator": "==",
+                          "thresholdValue": "Online",
+                          "representation": "success",
+                          "text": "{0}{1}"
+                        },
+                        {
+                          "operator": "==",
+                          "thresholdValue": "Offline",
+                          "representation": "2",
+                          "text": "{0}{1}"
+                        },
+                        {
+                          "operator": "Default",
+                          "thresholdValue": null,
+                          "representation": "success",
+                          "text": "{0}{1}"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnMatch": "Message Trend",
+                    "formatter": 10,
+                    "formatOptions": {
+                      "palette": "green"
+                    }
+                  },
+                  {
+                    "columnMatch": "BillableSyslogData",
+                    "formatter": 3,
+                    "formatOptions": {
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 0,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "MessageCount",
+                    "formatter": 3,
+                    "formatOptions": {
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 17,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "BillableData",
+                    "formatter": 3,
+                    "formatOptions": {
+                      "palette": "blue",
+                      "customColumnWidthSetting": "330px"
+                    },
+                    "numberFormat": {
+                      "unit": 2,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "EstCost",
+                    "formatter": 8,
+                    "formatOptions": {
+                      "palette": "blue"
+                    }
+                  }
+                ],
+                "filter": true
+              }
+            },
+            "name": "query - 5 - Copy - Copy - Copy"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "Syslog| where HostName == '{SelectedHost}'| summarize BillableData=sum(_BilledSize), MessageCount=count () by Facility",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "Top Syslog Facility",
+              "timeContextFromParameter": "TimeRange",
+              "exportFieldName": "Facility",
+              "exportParameterName": "SelectedFacility",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "visualization": "table",
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "State",
+                    "formatter": 18,
+                    "formatOptions": {
+                      "thresholdsOptions": "icons",
+                      "thresholdsGrid": [
+                        {
+                          "operator": "==",
+                          "thresholdValue": "Online",
+                          "representation": "success",
+                          "text": "{0}{1}"
+                        },
+                        {
+                          "operator": "==",
+                          "thresholdValue": "Offline",
+                          "representation": "2",
+                          "text": "{0}{1}"
+                        },
+                        {
+                          "operator": "Default",
+                          "thresholdValue": null,
+                          "representation": "success",
+                          "text": "{0}{1}"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnMatch": "Message Trend",
+                    "formatter": 10,
+                    "formatOptions": {
+                      "palette": "green"
+                    }
+                  },
+                  {
+                    "columnMatch": "BillableSyslogData",
+                    "formatter": 3,
+                    "formatOptions": {
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 0,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "MessageCount",
+                    "formatter": 3,
+                    "formatOptions": {
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 17,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "BillableData",
+                    "formatter": 3,
+                    "formatOptions": {
+                      "palette": "blue",
+                      "customColumnWidthSetting": "330px"
+                    },
+                    "numberFormat": {
+                      "unit": 2,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "EstCost",
+                    "formatter": 8,
+                    "formatOptions": {
+                      "palette": "blue"
+                    }
+                  }
+                ]
+              }
+            },
+            "customWidth": "30",
+            "conditionalVisibility": {
+              "parameterName": "SelectedHost",
+              "comparison": "isNotEqualTo",
+              "value": " "
+            },
+            "name": "query - 5 - Copy - Copy - Copy - Copy"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "Syslog| where HostName == '{SelectedHost}'| make-series EventCount = count() on TimeGenerated  from {TimeRange:start} to {TimeRange:end} step 6h by Facility",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "  ",
+              "timeContextFromParameter": "TimeRange",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces",
+              "visualization": "barchart",
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "State",
+                    "formatter": 18,
+                    "formatOptions": {
+                      "thresholdsOptions": "icons",
+                      "thresholdsGrid": [
+                        {
+                          "operator": "==",
+                          "thresholdValue": "Online",
+                          "representation": "success",
+                          "text": "{0}{1}"
+                        },
+                        {
+                          "operator": "==",
+                          "thresholdValue": "Offline",
+                          "representation": "2",
+                          "text": "{0}{1}"
+                        },
+                        {
+                          "operator": "Default",
+                          "thresholdValue": null,
+                          "representation": "success",
+                          "text": "{0}{1}"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "columnMatch": "Message Trend",
+                    "formatter": 10,
+                    "formatOptions": {
+                      "palette": "green"
+                    }
+                  },
+                  {
+                    "columnMatch": "BillableSyslogData",
+                    "formatter": 3,
+                    "formatOptions": {
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 0,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "MessageCount",
+                    "formatter": 3,
+                    "formatOptions": {
+                      "palette": "blue"
+                    },
+                    "numberFormat": {
+                      "unit": 17,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "BillableData",
+                    "formatter": 3,
+                    "formatOptions": {
+                      "palette": "blue",
+                      "customColumnWidthSetting": "330px"
+                    },
+                    "numberFormat": {
+                      "unit": 2,
+                      "options": {
+                        "style": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "columnMatch": "EstCost",
+                    "formatter": 8,
+                    "formatOptions": {
+                      "palette": "blue"
+                    }
+                  }
+                ]
+              },
+              "chartSettings": {
+                "showLegend": true
+              }
+            },
+            "customWidth": "70",
+            "conditionalVisibility": {
+              "parameterName": "SelectedHost",
+              "comparison": "isNotEqualTo",
+              "value": " "
+            },
+            "name": "query - 5 - Copy - Copy - Copy - Copy - Copy"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "SelectedTab",
+        "comparison": "isEqualTo",
+        "value": "NetworkDevices"
+      },
+      "name": "group - 5"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "CommonSecurityLog| summarize count() by DeviceVendor| render columnchart",
+        "size": 0,
+        "showAnalytics": true,
+        "title": "Ingest volume by Vendor",
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "conditionalVisibility": {
+        "parameterName": "SelectedTab",
+        "comparison": "isEqualTo",
+        "value": "CommonSecurityLogs"
+      },
+      "name": "query - 9",
+      "styleSettings": {
+        "showBorder": true
+      }
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 1,
+            "content": {
+              "json": "### PALO ALTO:- Traffic by Device Action (alert, deny, allow, etc.)- Activity by Account (who's generating the most traffic)"
+            },
+            "name": "text - 22"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "CommonSecurityLog| where DeviceVendor contains 'Palo Alto'| summarize count() by DeviceAction| render columnchart",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "Device Actions ",
+              "timeContextFromParameter": "TimeRange",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces"
+            },
+            "conditionalVisibility": {
+              "parameterName": "SelectedTab",
+              "comparison": "isEqualTo",
+              "value": "CommonSecurityLogs"
+            },
+            "name": "query - 11"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "CommonSecurityLog | where DeviceVendor contains 'Palo Alto'| summarize count() by SourceUserName",
+              "size": 0,
+              "title": "Activity by Account",
+              "timeContextFromParameter": "TimeRange",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces"
+            },
+            "conditionalVisibility": {
+              "parameterName": "SelectedTab",
+              "comparison": "isEqualTo",
+              "value": "CommonSecurityLogs"
+            },
+            "name": "query - 21"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "SelectedTab",
+        "comparison": "isEqualTo",
+        "value": "CommonSecurityLogs"
+      },
+      "name": "group - 23",
+      "styleSettings": {
+        "showBorder": true
+      }
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "CommonSecurityLog| summarize count() by DeviceAction| render columnchart",
+        "size": 0,
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "conditionalVisibility": {
+        "parameterName": "SelectedTab",
+        "comparison": "isEqualTo",
+        "value": "CommonSecurityLog"
+      },
+      "name": "query - 10"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 1,
+            "content": {
+              "json": "### Workstations Logging Directly to Sentinel"
+            },
+            "name": "text - 14"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "Heartbeat                                                                       //<-- Query the Heartbeat table| where OSName contains Windows 10 or OSName contains Windows 11            //<-- Query for Win10 and 11 Workstations| summarize arg_max(TimeGenerated, OSName) by Computer                          //<-- Summarize by computer| join (SecurityEvent) on Computer                                                           //<-- Join results with the following query against the SecurityEvent table| summarize GB=sum(_BilledSize)/1000/1000/1000                                  //<-- Summarize by total _Billed Size and convert to GB| extend cost= round(GB*{CostPerGB},2)| extend cost=strcat('$', cost)",
+              "size": 0,
+              "timeContextFromParameter": "TimeRange",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces"
+            },
+            "conditionalVisibility": {
+              "parameterName": "SelectedTab",
+              "comparison": "isEqualTo",
+              "value": "Duplication"
+            },
+            "name": "query - 13"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "### MDE Table Duplication"
+            },
+            "name": "text - 2"
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "",
+              "size": 0,
+              "timeContext": {
+                "durationMs": 86400000
+              },
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces"
+            },
+            "name": "query - 3"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "SelectedTab",
+        "comparison": "isEqualTo",
+        "value": "Duplication"
+      },
+      "name": "group - 15"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "SecurityEvent\r\n| where _IsBillable == True                //<-- Filter out non-billable data\r\n| summarize EventCount=count(), Billable_GB=sum(_BilledSize/1000/1000/1000) by EventID\r\n| extend TotalCost = round(Billable_GB*{CostPerGB},2)\r\n| extend TotalCost=strcat('$', TotalCost)\r\n| sort by Billable_GB desc                 //<-- Display results in descending order\r\n| project-away EventCount                   //<-- comment this out for a total count of number of hits for each EventID\r\n| limit 10",
+        "size": 0,
+        "showAnalytics": true,
+        "title": "Top 10 EventIDs from Windows SecurityEvents Table:",
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "conditionalVisibility": {
+        "parameterName": "SelectedTab",
+        "comparison": "isEqualTo",
+        "value": "SecurityEvents"
+      },
+      "name": "query - 12"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "Usage| where IsBillable == true| summarize GB = round(sum(Quantity)/1000,2) by DataType| extend TotalCost = round(GB*{CostPerGB},2)| extend TotalCost=strcat('$', TotalCost)| sort by TotalCost desc| where DataType contains 'device'| limit 10",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "MDE Tables Replicating to Sentinel:",
+              "timeContext": {
+                "durationMs": 86400000
+              },
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces"
+            },
+            "conditionalVisibility": {
+              "parameterName": "SelectedTab",
+              "comparison": "isEqualTo",
+              "value": "MDE"
+            },
+            "name": "query - 11"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "SelectedTab",
+        "comparison": "isEqualTo",
+        "value": "MDE"
+      },
+      "name": "group - 16"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "Heartbeat\r\n| where OSName contains \"Windows 10\" or OSName contains \"Windows 11\"\r\n| summarize by Computer, OSName\r\n| join (SecurityEvent) on Computer\r\n| summarize GB=round((sum(_BilledSize)/1000/1000/1000),2) by Computer\r\n| extend cost= round(GB*4.3,2)\r\n| extend cost=strcat('$', cost)",
+              "size": 0,
+              "showAnalytics": true,
+              "title": "Workstations Logging Directly to Sentinel",
+              "timeContextFromParameter": "TimeRange",
+              "queryType": 0,
+              "resourceType": "microsoft.operationalinsights/workspaces"
+            },
+            "name": "query - 15"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "SelectedTab",
+        "comparison": "isEqualTo",
+        "value": "MDE"
+      },
+      "name": "group - 16"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### Detection & Investigation Values"
+      },
+      "conditionalVisibility": {
+        "parameterName": "SelectedTab",
+        "comparison": "isEqualTo",
+        "value": "Detections"
+      },
+      "name": "text - 15"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### Top 10 Sources of Billable Ingest:"
+      },
+      "conditionalVisibility": {
+        "parameterName": "SelectedTable",
+        "comparison": "isEqualTo",
+        "value": "Top10Tables"
+      },
+      "name": "text - 18"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "Usage                                                                               // <--Query the Usage table\r\n| where IsBillable == true                                                          // <--Only include 'billable' data\r\n| summarize TotalVolumeGB = sum(Quantity) / 1000 by bin(StartTime, 1d), Solution    // <--Chop it up into GB / Day\r\n| render columnchart                                                                // <--Graph the results",
+        "size": 0,
+        "showAnalytics": true,
+        "timeContextFromParameter": "TimeRange",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "conditionalVisibility": {
+        "parameterName": "SelectedTab",
+        "comparison": "isEqualTo",
+        "value": "BillableUsage"
+      },
+      "name": "query - 19"
+    }
+  ],
+  "fallbackResourceIds": [
+    "/subscriptions/d646b841-0a9d-4bfb-afcd-e665805d60ac/resourcegroups/sentinel360lab-siem/providers/microsoft.operationalinsights/workspaces/sentinel360lab-siem"
+  ],
+  "fromTemplateId": "sentinel-UserWorkbook",
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
