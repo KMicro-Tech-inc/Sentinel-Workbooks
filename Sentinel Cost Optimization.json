@@ -46,14 +46,6 @@
             "linkLabel": "MDE Table & Workstation Duplication",
             "subTarget": "MDE",
             "style": "link"
-          },
-          {
-            "id": "17aeac85-7ff7-4a2e-835f-6400f8b24d8c",
-            "cellValue": "SelectedTab",
-            "linkTarget": "parameter",
-            "linkLabel": "Detection & Investigation Values",
-            "subTarget": "Detections",
-            "style": "link"
           }
         ]
       },
@@ -1664,18 +1656,6 @@
         "value": "MDE"
       },
       "name": "group - 16"
-    },
-    {
-      "type": 1,
-      "content": {
-        "json": "### Detection & Investigation Values"
-      },
-      "conditionalVisibility": {
-        "parameterName": "SelectedTab",
-        "comparison": "isEqualTo",
-        "value": "Detections"
-      },
-      "name": "text - 15"
     },
     {
       "type": 1,
