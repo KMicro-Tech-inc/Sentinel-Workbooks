@@ -4,7 +4,7 @@
     {
       "type": 1,
       "content": {
-        "json": "## KMicro Tech, Inc. Sentinel Reporting\n\n![KMicro Logo](https://th.bing.com/th/id/OIP._rzDAUfXSo5dWx3MreEmOQHaBV?rs=1&pid=ImgDetMain)\n\nWelcome to your cybersecurity reporting dashboard. Use the parameters below to adjust the time range, workspace, and cost settings."
+        "json": "## KMicro Tech, Inc. Sentinel Reporting\n\n![KMicro Logo](https://kmicro.com/public/uploads/uploads-f89f6171df7eea91648253eb6d95a5b1.png)\n\nWelcome to your cybersecurity reporting dashboard. Use the parameters below to adjust the time range, workspace, and cost settings."
       },
       "name": "KMicro Sentinel Workbook Header"
     },
